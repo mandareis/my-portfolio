@@ -6,7 +6,6 @@ import Link from "next/link";
 const fragmentMono = Fragment_Mono({
   subsets: ["latin"],
   weight: "400",
-  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -14,14 +13,50 @@ export const metadata: Metadata = {
   description: "Personal Portfolio Website for Amanda Reis",
 };
 
+const Name = () => {
+  return <div className="font-semibold text-3xl text-right">Amanda Reis</div>;
+};
+
+type Link = {
+  title: string;
+  href: string;
+};
+
+const navLinks = [
+  {
+    href: "/",
+    title: "Home",
+  },
+  {
+    href: "/about",
+    title: "About",
+  },
+  {
+    href: "/projects",
+    title: "Projects",
+  },
+  {
+    href: "/contact",
+    title: "Contact",
+  },
+];
+
 const NavigationBar = () => {
   return (
-    <>
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
-      <Link href="/projects">Projects</Link>
-      <Link href="/contact">Contact</Link>
-    </>
+    <div className=" space-x-3 text-right">
+      {navLinks.map((link: Link, index: number) => {
+        return (
+          <>
+            <Link key={link.href} href={link.href}>
+              {link.title}
+            </Link>
+            {index === navLinks.length - 1 ? null : (
+              <span style={{ cursor: "default" }}>{"//"}</span>
+            )}
+          </>
+        );
+      })}
+    </div>
   );
 };
 
@@ -32,9 +67,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={fragmentMono.className + " bg-indigo-500"}>
-        {children}
+      <body className={`${fragmentMono.className} bg-green-300 space-y-4`}>
+        <Name />
         <NavigationBar />
+        {children}
       </body>
     </html>
   );

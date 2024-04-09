@@ -1,7 +1,9 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Fragment_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import DarkMode from "./darkMode/darkMode";
 
 const fragmentMono = Fragment_Mono({
   subsets: ["latin"],
@@ -14,7 +16,9 @@ export const metadata: Metadata = {
 };
 
 const Name = () => {
-  return <div className="font-semibold text-3xl text-right">Amanda Reis</div>;
+  return (
+    <div className="font-semibold text-3xl text-right">Amanda De Paula</div>
+  );
 };
 
 type Link = {
@@ -46,14 +50,12 @@ const NavigationBar = () => {
     <div className=" space-x-3 text-right">
       {navLinks.map((link: Link, index: number) => {
         return (
-          <>
-            <Link key={link.href} href={link.href}>
-              {link.title}
-            </Link>
+          <React.Fragment key={link.href}>
+            <Link href={link.href}>{link.title}</Link>
             {index === navLinks.length - 1 ? null : (
               <span style={{ cursor: "default" }}>{"//"}</span>
             )}
-          </>
+          </React.Fragment>
         );
       })}
     </div>
@@ -67,8 +69,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fragmentMono.className} bg-green-300 space-y-4`}>
+      <body
+        className={`${fragmentMono.className} space-y-2 bg-green-300 dark:bg-green-950 text-green-950 dark:text-green-300`}
+      >
         <Name />
+        <DarkMode />
         <NavigationBar />
         {children}
       </body>

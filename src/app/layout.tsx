@@ -4,6 +4,7 @@ import { Fragment_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import DarkMode from "./darkMode/darkMode";
+import { cookies } from "next/headers";
 
 const fragmentMono = Fragment_Mono({
   subsets: ["latin"],
@@ -67,8 +68,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+  const theme = cookieStore.get("theme");
   return (
-    <html lang="en">
+    <html lang="en" className={theme?.value}>
       <body
         className={`${fragmentMono.className} space-y-2 bg-green-300 dark:bg-green-950 text-green-950 dark:text-green-300`}
       >

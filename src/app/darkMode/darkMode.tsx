@@ -1,10 +1,13 @@
 "use client";
-import { Moon } from "@phosphor-icons/react/dist/ssr";
-import React, { useEffect } from "react";
+import { Moon, Sun } from "@phosphor-icons/react/dist/ssr";
+import React, { useEffect, useState } from "react";
 import Cookie from "js-cookie";
 
-const doesOSWantDarkMode = (): boolean =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches;
+const doesOSWantDarkMode = (): boolean | undefined => {
+  if (typeof window !== "undefined") {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+};
 
 const getCurrentTheme = (): string => {
   let theCurrentSetting = Cookie.get("theme");
@@ -16,29 +19,36 @@ const getCurrentTheme = (): string => {
 };
 
 export default function DarkMode() {
+  const [theme, setTheme] = useState(getCurrentTheme);
   useEffect(() => {
-    let theCurrentSetting = getCurrentTheme();
-    if (theCurrentSetting === "light") {
+    if (theme === "light") {
       document.documentElement.classList.remove("dark");
-    } else {
+      Cookie.set("theme", "light");
+    } else if (theme === "dark") {
       document.documentElement.classList.add("dark");
+      Cookie.set("theme", "dark");
     }
-  }, []);
+  }, [theme]);
 
   return (
-    <div onClick={() => {}}>
-      <Moon
-        onClick={() => {
-          let theCurrentSetting = getCurrentTheme();
-          if (theCurrentSetting === "light") {
-            document.documentElement.classList.add("dark");
-            Cookie.set("theme", "dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-            Cookie.set("theme", "light");
-          }
-        }}
-      />
-    </div>
+    <>
+      {theme === "dark" ? (
+        <Sun
+          cursor={"pointer"}
+          size={32}
+          onClick={() => {
+            setTheme("light");
+          }}
+        />
+      ) : (
+        <Moon
+          cursor={"pointer"}
+          size={32}
+          onClick={() => {
+            setTheme("dark");
+          }}
+        />
+      )}
+    </>
   );
 }

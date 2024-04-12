@@ -73,12 +73,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={theme?.value}>
       <body
-        className={`${fragmentMono.className} space-y-2 bg-green-300 dark:bg-green-950 text-green-950 dark:text-green-300`}
+        className={`${fragmentMono.className} bg-pistachio dark:bg-brunswickGreen`}
       >
-        <Name />
-        <DarkMode />
-        <NavigationBar />
-        {children}
+        <div
+          className={`container mt-16 drop-shadow-lg rounded-md mx-auto px-4 py-4 bg-teaRose dark:bg-eggplant text-eggplant dark:text-teaRose`}
+        >
+          <div className="flex justify-between ">
+            <DarkMode />
+            <Name />
+          </div>
+
+          <NavigationBar />
+          {children}
+        </div>
       </body>
     </html>
   );

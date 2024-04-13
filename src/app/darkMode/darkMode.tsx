@@ -31,7 +31,7 @@ export default function DarkMode() {
   }, [theme]);
 
   return (
-    <>
+    <div className="border bg-teaRose dark:bg-eggplant border-eggplant50 hover:border-eggplant dark:hover:border-eggplant100 rounded-full py-1 px-2 drop-shadow-lg">
       {theme === "dark" ? (
         <Sun
           cursor={"pointer"}
@@ -49,6 +49,6 @@ export default function DarkMode() {
           }}
         />
       )}
-    </>
+    </div>
   );
 }

@@ -48,11 +48,13 @@ const navLinks = [
 
 const NavigationBar = () => {
   return (
-    <div className=" space-x-3 text-right">
+    <div className="space-x-3 text-center sm:text-right mt-2">
       {navLinks.map((link: Link, index: number) => {
         return (
           <React.Fragment key={link.href}>
-            <Link href={link.href}>{link.title}</Link>
+            <Link className="hover:text-eggplant50" href={link.href}>
+              {link.title}
+            </Link>
             {index === navLinks.length - 1 ? null : (
               <span style={{ cursor: "default" }}>{"//"}</span>
             )}
@@ -75,14 +77,11 @@ export default function RootLayout({
       <body
         className={`${fragmentMono.className} bg-pistachio dark:bg-brunswickGreen`}
       >
-        <div
-          className={`container mt-16 drop-shadow-lg rounded-md mx-auto px-4 py-4 bg-teaRose dark:bg-eggplant text-eggplant dark:text-teaRose`}
-        >
-          <div className="flex justify-between ">
+        <div className="container mt-16 drop-shadow-lg rounded-lg mx-auto md:px-6 py-8 bg-teaRose dark:bg-eggplant text-eggplant dark:text-teaRose">
+          <div className="flex justify-between px-2">
             <DarkMode />
             <Name />
           </div>
-
           <NavigationBar />
           {children}
         </div>

@@ -1,4 +1,9 @@
-import { User, At, ChatText } from "@phosphor-icons/react/dist/ssr";
+import {
+  User,
+  At,
+  ChatText,
+  PaperPlaneTilt,
+} from "@phosphor-icons/react/dist/ssr";
 
 type InputLabels = {
   id: number;
@@ -29,19 +34,19 @@ const contactFormOptions = [
 ];
 
 const ContactForm = () => {
-  return contactFormOptions.map((input: InputLabels, index: number) => {
+  return contactFormOptions.map((input: InputLabels) => {
     return (
       <>
         <div className="flex flex-row space-x-3 justify-center" key={input.id}>
           {input.icon}
           {input.id === 3 ? (
             <textarea
-              className="rounded-sm bg-transparent w-1/2 overflow-scroll resize-none  max-full max-h-80"
+              className="rounded-sm placeholder-gray-500 bg-transparent w-1/2 overflow-scroll h-full max-h-60"
               placeholder={input.placeholder}
             ></textarea>
           ) : (
             <input
-              className="rounded-sm bg-transparent w-1/2"
+              className="rounded-sm placeholder-gray-500 bg-transparent w-1/2"
               name={input.name}
               placeholder={input.placeholder}
             />
@@ -53,11 +58,18 @@ const ContactForm = () => {
 };
 export default function ContactPage() {
   return (
-    <div className="mt-8 flex py-6 flex-col space-y-6 sm:w-3/5 mx-auto  rounded-md drop-shadow-lg border bg-eggplant50 border-eggplant dark:border-midnightGreen ">
+    <div className="mt-8 flex py-6 flex-col space-y-6 sm:w-1/2 mx-auto rounded-md drop-shadow-lg border border-eggplant dark:border-midnightGreen">
       <ContactForm />
-      <button className="rounded bg-pistachio" type="submit">
-        Send
-      </button>
+      <div className="flex justify-center">
+        <PaperPlaneTilt
+          cursor={"pointer"}
+          size={32}
+          className=" rounded bg-eggplant50 text-brunswickGreen dark:text-cherryBlossomPink hover:bg-puce dark:hover:bg-eggplant100"
+          type="submit"
+        >
+          Send
+        </PaperPlaneTilt>
+      </div>
     </div>
   );
 }

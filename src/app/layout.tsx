@@ -48,11 +48,11 @@ const navLinks = [
 
 const NavigationBar = () => {
   return (
-    <div className="space-x-3 text-center sm:text-right mt-2">
+    <div className="space-x-3 text-center sm:px-4 sm:text-right">
       {navLinks.map((link: Link, index: number) => {
         return (
           <React.Fragment key={link.href}>
-            <Link className="hover:text-eggplant50" href={link.href}>
+            <Link className="hover:text-viridianGreen" href={link.href}>
               {link.title}
             </Link>
             {index === navLinks.length - 1 ? null : (
@@ -64,7 +64,7 @@ const NavigationBar = () => {
     </div>
   );
 };
-
+//TODO: Figure out if possible to fix for Galaxy Fold and Samsung Galaxy S8+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,8 +77,8 @@ export default function RootLayout({
       <body
         className={`${fragmentMono.className} bg-pistachio dark:bg-brunswickGreen`}
       >
-        <div className="container mt-16 drop-shadow-lg rounded-lg mx-auto md:px-6 py-8 bg-teaRose dark:bg-eggplant text-eggplant dark:text-teaRose">
-          <div className="flex justify-between px-2">
+        <div className="container mt-16 drop-shadow-lg border border-puce dark:border-eggplant100 rounded-md  md:w-3/4 mx-auto py-4 xs:px-4 bg-cherryBlossomPink dark:bg-eggplant text-brunswickGreen dark:text-cherryBlossomPink">
+          <div className="flex justify-between py-2 px-4 ">
             <DarkMode />
             <Name />
           </div>

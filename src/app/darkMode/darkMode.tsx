@@ -31,7 +31,7 @@ export default function DarkMode() {
   }, [theme]);
 
   return (
-    <button className="border bg-cherryBlossomPink dark:bg-eggplant border-eggplant50 hover:border-eggplant dark:hover:border-eggplant100 rounded-full py-1 px-2 drop-shadow-lg">
+    <button className="border bg-cherryBlossomPink dark:bg-eggplant border-eggplant50 hover:border-eggplant dark:outline-cherryBlossomPink  outline-brunswickGreen  dark:hover:border-eggplant100 rounded-full py-1 px-2 drop-shadow-lg">
       {theme === "dark" ? (
         <Sun
           cursor={"pointer"}

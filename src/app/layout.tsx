@@ -52,7 +52,10 @@ const NavigationBar = () => {
       {navLinks.map((link: Link, index: number) => {
         return (
           <React.Fragment key={link.href}>
-            <Link className="hover:text-viridianGreen" href={link.href}>
+            <Link
+              className="hover:text-viridianGreen dark:outline-cherryBlossomPink  outline-brunswickGreen"
+              href={link.href}
+            >
               {link.title}
             </Link>
             {index === navLinks.length - 1 ? null : (
